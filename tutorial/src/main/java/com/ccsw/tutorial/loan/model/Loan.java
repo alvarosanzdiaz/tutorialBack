@@ -27,10 +27,10 @@ public class Loan {
     private Long id;
 
     @Column(name = "initial_date", nullable = false)
-    private Date initial_date;
+    private Date initialDate;
 
     @Column(name = "final_date", nullable = false)
-    private Date final_date;
+    private Date finalDate;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
@@ -59,17 +59,17 @@ public class Loan {
     /**
      * @return fechainicial
      */
-    public Date getInitial_date() {
+    public Date getInitialDate() {
 
-        return this.initial_date;
+        return this.initialDate;
     }
 
     /**
      * @param fechainicial new value of {@link #getTitle}.
      */
-    public void setInitial_date(Date initial_date) {
+    public void setInitialDate(Date initialDate) {
 
-        this.initial_date = initial_date;
+        this.initialDate = initialDate;
     }
 
     /**
@@ -84,12 +84,12 @@ public class Loan {
         return this.game;
     }
 
-    public Date getFinal_date() {
-        return final_date;
+    public Date getfinalDate() {
+        return finalDate;
     }
 
-    public void setFinal_date(Date final_date) {
-        this.final_date = final_date;
+    public void setfinalDate(Date finalDate) {
+        this.finalDate = finalDate;
     }
 
     /**

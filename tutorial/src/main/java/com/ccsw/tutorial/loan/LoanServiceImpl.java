@@ -70,8 +70,8 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public boolean isLoanFree(LoanDto dto) {
 
-        return this.loanRepository.findLoanByGameAndDates(dto.getGame().getId(), dto.getInitial_date(),
-                dto.getFinal_date());
+        return this.loanRepository.findLoanByGameAndDates(dto.getGame().getId(), dto.getInitialDate(),
+                dto.getFinalDate());
 
     }
 
@@ -79,7 +79,7 @@ public class LoanServiceImpl implements LoanService {
     public boolean exceedLoan(LoanDto dto) {
 
         int numPrestamos = this.loanRepository.countLoanByClientIdAndDates(dto.getClient().getId(),
-                dto.getInitial_date(), dto.getFinal_date());
+                dto.getInitialDate(), dto.getFinalDate());
 
         // si excede el número de préstamos
         if (numPrestamos >= 2) {

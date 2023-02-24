@@ -12,9 +12,9 @@ public class LoanDto {
 
     private Long id;
 
-    private Date initial_date;
+    private Date initialDate;
 
-    private Date final_date;
+    private Date finalDate;
 
     private GameDto game;
 
@@ -39,17 +39,17 @@ public class LoanDto {
     /**
      * @return fechainicial
      */
-    public Date getInitial_date() {
+    public Date getInitialDate() {
 
-        return this.initial_date;
+        return this.initialDate;
     }
 
     /**
      * @param fechainicial new value of {@link #getTitle}.
      */
-    public void setInitial_date(Date initial_date) {
+    public void setInitialDate(Date initialDate) {
 
-        this.initial_date = initial_date;
+        this.initialDate = initialDate;
     }
 
     /**
@@ -64,12 +64,12 @@ public class LoanDto {
         return this.game;
     }
 
-    public Date getFinal_date() {
-        return final_date;
+    public Date getFinalDate() {
+        return finalDate;
     }
 
-    public void setFinal_date(Date final_date) {
-        this.final_date = final_date;
+    public void setFinalDate(Date finalDate) {
+        this.finalDate = finalDate;
     }
 
     /**
