@@ -22,7 +22,7 @@ public interface LoanService {
      */
     Page<Loan> findPage(LoanSearchDto dto);
 
-    Page<Loan> find(LoanSearchDto dto, Long gameId, Long clientId, Date initial_date);
+    Page<Loan> find(LoanSearchDto dto, Long gameId, Long clientId, Date initialDate);
 
     /**
      * Método para crear o actualizar un

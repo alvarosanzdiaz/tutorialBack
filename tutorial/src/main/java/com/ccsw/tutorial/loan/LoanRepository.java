@@ -25,19 +25,19 @@ public interface LoanRepository extends CrudRepository<Loan, Long> {
     Page<Loan> findAll(Pageable pageable);
     // Query para aplicar los filtros correspondientes
 
-    @Query("SELECT p FROM Loan p WHERE (:gameId IS NULL OR p.game.id = :gameId) AND (:clientId IS NULL OR p.client.id = :clientId) AND (:initial_date IS NULL OR (p.initial_date <= :initial_date AND p.final_date > :initial_date))")
+    @Query("SELECT p FROM Loan p WHERE (:gameId IS NULL OR p.game.id = :gameId) AND (:clientId IS NULL OR p.client.id = :clientId) AND (:initial_date IS NULL OR (p.initialDate <= :initial_date AND p.finalDate > :initial_date))")
     Page<Loan> find(Pageable pageable, @Param("gameId") Long gameId, @Param("clientId") Long clientId,
-            @Param("initial_date") Date initial_date);
+            @Param("initial_date") Date initialDate);
 
     // Query para comprobar si el juego está prestado en un tiempo determinado
-    @Query("SELECT CASE WHEN COUNT(p) > 1 THEN true ELSE false END FROM Loan p WHERE p.game.id = :gameId AND (:initial_date BETWEEN p.initial_date AND p.final_date) OR  (:final_date BETWEEN p.initial_date AND p.final_date)")
-    boolean findLoanByGameAndDates(@Param("gameId") Long gameId, @Param("initial_date") Date initial_date,
-            @Param("final_date") Date final_date);
+    @Query("SELECT CASE WHEN COUNT(p) > 1 THEN true ELSE false END FROM Loan p WHERE p.game.id = :gameId AND (:initial_date BETWEEN p.initialDate AND p.finalDate) OR  (:final_date BETWEEN p.initialDate AND p.finalDate) OR (:initial_date <= p.initialDate AND :final_date >= p.finalDate) OR (:initial_date > p.initialDate AND :final_date < p.finalDate)")
+    boolean findLoanByGameAndDates(@Param("gameId") Long gameId, @Param("initial_date") Date initialDate,
+            @Param("final_date") Date finalDate);
 
     // Query para obtener el número de préstamos de un cliente en un tiempo
     // determinado
-    @Query("SELECT count(p) FROM Loan p WHERE p.client.id = :clientId AND (:initial_date BETWEEN p.initial_date AND p.final_date OR :final_date BETWEEN p.initial_date AND p.final_date)")
-    int countLoanByClientIdAndDates(@Param("clientId") Long clientId, @Param("initial_date") Date initial_date,
-            @Param("final_date") Date final_date);
+    @Query("SELECT count(p) FROM Loan p WHERE p.client.id = :clientId AND (:initial_date BETWEEN p.initialDate AND p.finalDate OR :final_date BETWEEN p.initialDate AND p.finalDate)OR (:initial_date <= p.initialDate AND :final_date >= p.finalDate) OR (:initial_date > p.initialDate AND :final_date < p.finalDate)")
+    int countLoanByClientIdAndDates(@Param("clientId") Long clientId, @Param("initial_date") Date initialDate,
+            @Param("final_date") Date finalDate);
 
 }

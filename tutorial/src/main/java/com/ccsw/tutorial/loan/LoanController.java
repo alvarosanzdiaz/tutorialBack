@@ -36,9 +36,9 @@ public class LoanController {
     public Page<LoanDto> find(@RequestBody LoanSearchDto dto,
             @RequestParam(value = "gameId", required = false) Long gameId,
             @RequestParam(value = "clientId", required = false) Long clientId,
-            @RequestParam(value = "initial_date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date initial_date) {
+            @RequestParam(value = "initialDate", required = false) @DateTimeFormat(pattern = "MM/dd/yyyy") Date initialDate) {
 
-        Page<Loan> loans = loanService.find(dto, gameId, clientId, initial_date);
+        Page<Loan> loans = loanService.find(dto, gameId, clientId, initialDate);
 
         return beanMapper.mapPage(loans, LoanDto.class);
     }
